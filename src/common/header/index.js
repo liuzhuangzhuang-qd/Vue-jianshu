@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { searchFocus, searchBlur } from './store/actionCreator'
+import { actionType, actionCreators } from './store/index'
 import {
     HeaderWrapper,
     Logo,
@@ -97,7 +97,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return{
-        focused: state.header.focused,
+        focused: state.get('header').get('focused'),
     }
 }
 const mapDispathToProps = (dispatch) => {
@@ -106,10 +106,10 @@ const mapDispathToProps = (dispatch) => {
             // const action = {
             //     type: 'search_focus'
             // }
-            dispatch(searchFocus())
+            dispatch(actionCreators.searchFocus())
         },
         handleInputBlur() {
-            dispatch(searchBlur())
+            dispatch(actionCreators.searchBlur())
         }
     }
 }
