@@ -87,6 +87,7 @@ class Header extends  Component {
         const { totalPage, focused, list, page, handelMouseEnter, handelMouseLeave, mouseIn, handelChangePage } = this.props;
         const newList = list.toJS();
         const pageList = [];
+        let spinIcon;
         if (newList.length) {
             for (let i = ((page - 1) * 10);i < (page * 10); i++) {
                 pageList.push(
@@ -102,8 +103,8 @@ class Header extends  Component {
                 >
                     <SearchInfoTitle>
                         热门搜索
-                        <SearchInfoSwitch onClick={() => handelChangePage(page, totalPage)}>
-                            {/*<i className='iconfont'>&#xe758;</i>*/}
+                        <SearchInfoSwitch onClick={() => handelChangePage(page, totalPage, spinIcon)}>
+                            <i ref={(icon) => {spinIcon = icon}} className='iconfont spin'>&#xe758;</i>
                             换一批
                         </SearchInfoSwitch>
                     </SearchInfoTitle>
@@ -117,7 +118,7 @@ class Header extends  Component {
         }
     }
     render () {
-        const { focused, handleInputFocus, handleInputBlur } = this.props
+        const { focused, handleInputFocus, handleInputBlur, list } = this.props
         return (
             <HeaderWrapper>
                 <Logo href='/'/>
@@ -136,11 +137,11 @@ class Header extends  Component {
                         >
                             <NavSearch
                                 className={ focused ? 'focused' : '' }
-                                onFocus={handleInputFocus}
+                                onFocus={() => {handleInputFocus(list)}}
                                 onBlur={handleInputBlur}
                             ></NavSearch>
                         </CSSTransition>
-                        <i className={ this.props.focused ? 'focused iconfont' : 'iconfont' }>&#xe64d;</i>
+                        <i className={ this.props.focused ? 'focused iconfont zoom' : 'iconfont zoom' }>&#xe64d;</i>
                         {this.getListArea()}
                     </SearchWrapper>
                 </Nav>
@@ -168,8 +169,10 @@ const mapStateToProps = (state) => {
 }
 const mapDispathToProps = (dispatch) => {
     return{
-        handleInputFocus() {
-            dispatch(actionCreators.getList())
+        handleInputFocus(list) {
+            if (list.size === 0) {
+                dispatch(actionCreators.getList())
+            }
             // const action = {
             //     type: 'search_focus'
             // }
@@ -184,7 +187,15 @@ const mapDispathToProps = (dispatch) => {
         handelMouseLeave() {
             dispatch(actionCreators.mouseLeave())
         },
-        handelChangePage(page, totalPage) {
+        handelChangePage(page, totalPage, spin) {
+            console.log('>>>>>',spin.style.transform)
+            let originAngle = spin.style.transform
+            if ((originAngle == 'rotate(0deg)') || (originAngle == '')) {
+                spin.style.transform = 'rotate(360deg)'
+                console.log('1111>>>>>',spin.style.transform)
+            } else {
+                spin.style.transform = 'rotate(0deg)'
+            }
             if (page < totalPage) {
                 const newPage = page + 1;
                 dispatch(actionCreators.handelChangePage(newPage))

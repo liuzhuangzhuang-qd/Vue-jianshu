@@ -54,7 +54,7 @@ export const SearchWrapper = styled.div`
     .slide-exit-active {
         width: 160px;
     }
-    .iconfont {
+    .zoom {
         position: absolute;
         right: 5px;
         bottom: 5px;
@@ -110,6 +110,15 @@ export const SearchInfoList = styled.div`
 export const SearchInfoSwitch = styled.span`
     float: right;
     font-size: 13px;
+    cursor:pointer;
+    .spin {
+        display: block;
+        float: left;
+        font-size: 12px;
+        margin-right: 2px;
+        transition: all .2s ease-in;
+        transfrom-origin: center center;
+    }
 `
 export const SearchInfoItem = styled.a`
     line-height: 20px;
@@ -120,6 +129,7 @@ export const SearchInfoItem = styled.a`
     color: #787878;
     border-radius: 3px;
     float: left;
+    cursor:pointer;
 `
 
 export const Addition = styled.div`
