@@ -16,13 +16,14 @@ export const HomeWrapperLeft = styled.div`
     }
 `
 export const HomeWrapperRight = styled.div`
-    width: 240px;
+    width: 280px;
     float: right;
 `
 export const TopicWrapper = styled.div`
     overflow: hidden;
     padding: 20px 0 10px 0;
     margin-left: -18px;
+    border-bottom: 1px solid #dcdcdc;
 `
 export const TopicItem = styled.div`
     float: left;
@@ -44,4 +45,41 @@ export const TopicItem = styled.div`
         margin-right: 10px;  
     }
 `
-
+export const ListItem = styled.div`
+    overflow: hidden;
+    padding: 20px 0;
+    border-bottom: 1px solid #dcdcdc;
+    .pic {
+        display: block;
+        width: 125px;
+        height: 100px;
+        float: right;
+        border-radius: 10px;
+    }
+`
+export const ListInfo= styled.div`
+    width: 500px;
+    float: left;
+    .title {
+        line-height: 27px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+    .desc {
+        line-height: 24px;
+        font-size: 13px;
+        color: #999;
+    }
+`
+export const RecommendWrapper= styled.div`
+    margin: 30px 0px;
+    width: 280px;
+`
+export const RecommendItem= styled.div`
+    margin: 5px 0px;
+    width: 280px;
+    height: 50px;
+    background: url(${(props) => {return props.Url}});
+    background-size: contain;
+`
