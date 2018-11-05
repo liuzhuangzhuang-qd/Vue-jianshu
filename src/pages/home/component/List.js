@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { ListItem, ListInfo, LoadMore } from '../style'
-import { actionCreators } from '../store'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { ListItem, ListInfo, LoadMore } from '../style';
+import { actionCreators } from '../store';
 
 class List extends Component {
     render() {
@@ -11,17 +12,19 @@ class List extends Component {
                 {
                     list.map((item) => {
                         return (
-                            <ListItem key={item.get('id')}>
-                                <img
-                                    className="pic"
-                                    src={item.get('imgUrl')}
-                                    alt=""
-                                />
-                                <ListInfo>
-                                    <h3 className="title">{item.get('title')}</h3>
-                                    <p className="desc">{item.get('desc')}</p>
-                                </ListInfo>
-                            </ListItem>
+                            <Link to='/detail'>
+                                <ListItem key={item.get('id')}>
+                                    <img
+                                        className="pic"
+                                        src={item.get('imgUrl')}
+                                        alt=""
+                                    />
+                                    <ListInfo>
+                                        <h3 className="title">{item.get('title')}</h3>
+                                        <p className="desc">{item.get('desc')}</p>
+                                    </ListInfo>
+                                </ListItem>
+                            </Link>
                         )
                     })
                 }

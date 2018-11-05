@@ -23,7 +23,10 @@ export default (state = defaultState, action) => {
             return state.merge({
                 articleList: state.get('articleList').concat(action.list),
                 articlePage: action.articlePage,
-            })
+            });
+        case actionType.TOGGLE_TOP_SHOW:
+            // console.log('>>>',action.list)
+            return state.set('showScroll', action.showScroll)
         default:
             return state;
     }
