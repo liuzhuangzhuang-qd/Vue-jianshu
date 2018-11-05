@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { List, Recommend, Topic, Writer } from './component/index'
+import { connect } from 'react-redux';
+import { List, Recommend, Topic, Writer } from './component/index';
+import { actionCreators } from './store/index'
 import {
     HomeWrapper,
     HomeWrapperLeft,
@@ -22,6 +24,25 @@ class Home extends Component {
             </HomeWrapper>
         )
     }
+    componentDidMount() {
+        this.props.changeHomeData()
+    }
 }
 
-export default Home;
+const mapDispatch = (dispatch) => ({
+    changeHomeData() {
+        // axios.get('/api/HomeList.json').then((res) => {
+        //     const result = res.data.data
+        //     const action = {
+        //         type: 'change_home_data',
+        //         topicList: result.topicList,
+        //         articleList: result.articleList,
+        //         picList: result.picList,
+        //     }
+        //     dispatch(action)
+        // })
+        dispatch(actionCreators.getHomeInfo())
+    }
+})
+
+export default connect(null, mapDispatch)(Home);

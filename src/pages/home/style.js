@@ -71,15 +71,23 @@ export const ListInfo= styled.div`
         font-size: 13px;
         color: #999;
     }
-`
+`;
 export const RecommendWrapper= styled.div`
     margin: 30px 0px;
     width: 280px;
-`
+`;
 export const RecommendItem= styled.div`
     margin: 5px 0px;
     width: 280px;
     height: 50px;
     background: url(${(props) => {return props.Url}});
     background-size: contain;
-`
+`;
+export const WriterWrapper= styled.div`
+    width: 278px;
+    height: 300px;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    line-height: 300px;
+    text-align: center;
+`;
