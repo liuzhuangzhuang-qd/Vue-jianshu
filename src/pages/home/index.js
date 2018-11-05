@@ -6,9 +6,13 @@ import {
     HomeWrapper,
     HomeWrapperLeft,
     HomeWrapperRight,
+    BackTop,
 } from  './style'
 
 class Home extends Component {
+    handleScrollTop() {
+        window.scrollTo(0, 0)
+    }
     render() {
         return (
             <HomeWrapper>
@@ -21,6 +25,7 @@ class Home extends Component {
                     <Recommend />
                     <Writer />
                 </HomeWrapperRight>
+                <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop>
             </HomeWrapper>
         )
     }
