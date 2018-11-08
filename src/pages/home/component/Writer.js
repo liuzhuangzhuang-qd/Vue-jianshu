@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WriterWrapper, TopicItem } from '../style'
+import { WriterWrapper } from '../style'
 
 class Writer extends Component {
     render() {
