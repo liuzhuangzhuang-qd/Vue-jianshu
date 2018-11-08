@@ -1,26 +1,18 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { actionCreators } from './store/index'
-import { LoginWrapper, LoginBox, Input, Button } from './style'
 
-class Login extends PureComponent {
+class Write extends PureComponent {
     render() {
         const { loginStatus } = this.props
         console.log('122222>>>>>>', loginStatus)
-        if(!loginStatus) {
+        if(loginStatus) {
             return (
-                <LoginWrapper>
-                    <LoginBox>
-                        <Input placeholder='账号' ref={(input) => {this.account = input}}/>
-                        <Input placeholder='密码' type='password'ref={(input) => {this.password = input}}/>
-                        <Button onClick={() => this.props.login(this.account, this.password)}>登录</Button>
-                    </LoginBox>
-                </LoginWrapper>
+                <div>写文章</div>
             )
         } else {
             return(
-                <Redirect to='/' />
+                <Redirect to='/login' />
             )
         }
 
@@ -32,10 +24,6 @@ const mapState = (state) => ({
 
 })
 const mapDispatch = (dispatch) => ({
-    login(accountElem, passwordElem) {
-        dispatch(actionCreators.login(accountElem.value, passwordElem.value))
-        console.log(accountElem.value, '>>>>>', passwordElem.value)
-    }
 })
 
-export default connect(mapState, mapDispatch)(Login);
+export default connect(mapState, mapDispatch)(Write);
